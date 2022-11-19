@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -175,23 +177,29 @@ class LtfmCheckoutFormView extends StatefulWidget {
               //! 1. Buat dropdown,
               //? label: Payment Method
               //? opsi payment method:
+              QDropdownField(
+                  label: "Payment Method",
+                  items: const [
+                    {
+                      "label": "Cash",
+                      "value": 1,
+                    },
+                    {
+                      "label": "Credit Card",
+                      "value": 2,
+                    },
+                    {
+                      "label": "OVO",
+                      "value": 3,
+                    },
+                    {
+                      "label": "Dana",
+                      "value": 4,
+                    }
+                  ],
+                  onChanged: (value, label) {}),
               /*
-              {
-                "label": "Cash",
-                "value": 1,
-              },
-              {
-                "label": "Credit Card",
-                "value": 2,
-              },
-              {
-                "label": "OVO",
-                "value": 3,
-              },
-              {
-                "label": "Dana",
-                "value": 4,
-              }
+           
               */
               // dropdown
 
@@ -200,6 +208,45 @@ class LtfmCheckoutFormView extends StatefulWidget {
               //! 1. Buat sebuah tombol Checkout
               //? icon: Icons.check
               //? label: Checkout
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: 40.0,
+                child: ElevatedButton.icon(
+                  onPressed: () async {
+                    Navigator.pop(context);
+                    await showDialog<void>(
+                      context: context,
+                      barrierDismissible: true,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text('Checkout success'),
+                          content: SingleChildScrollView(
+                            child: ListBody(
+                              children: const <Widget>[
+                                Text('Your order was placed!'),
+                              ],
+                            ),
+                          ),
+                          actions: <Widget>[
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.blueGrey,
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text("Ok"),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  icon: Icon(Icons.check),
+                  label: Text("checkout"),
+                  style: ElevatedButton.styleFrom(),
+                ),
+              ),
               //! 2. Atur lebar tombol menjadi full width:
               //? gunakan ini: MediaQuery.of(context).size.width
               //! 3. Atur tinggi tombol menjadi 40
@@ -207,34 +254,7 @@ class LtfmCheckoutFormView extends StatefulWidget {
               //? Ubah event onPressed menjadi async
               //? Contoh: onPressed: () async {}
               /*
-              Navigator.pop(context);
-              await showDialog<void>(
-                context: context,
-                barrierDismissible: true,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: const Text('Checkout success'),
-                    content: SingleChildScrollView(
-                      child: ListBody(
-                        children: const <Widget>[
-                          Text('Your order was placed!'),
-                        ],
-                      ),
-                    ),
-                    actions: <Widget>[
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blueGrey,
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text("Ok"),
-                      ),
-                    ],
-                  );
-                },
-              );
+             
               */
             ],
           ),

@@ -17,7 +17,8 @@ class LtsmLoadingView extends StatefulWidget {
         child: Container(
           padding: const EdgeInsets.all(10.0),
           child: Column(
-            children: const [
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
               /*
               ? Buat variabel loading di dalam State/Controller
               ! bool loading = false;
@@ -33,6 +34,39 @@ class LtsmLoadingView extends StatefulWidget {
               */
                 
               */
+              if (controller.isLoading)
+                const Center(child: CircularProgressIndicator()),
+              const SizedBox(
+                height: 25.0,
+              ),
+              if (controller.isLoading == false)
+                SizedBox(
+                  height: 350.0,
+                  child: ListView.builder(
+                    itemCount: 5,
+                    itemBuilder: (context, index) => const SizedBox(
+                      height: 50.0,
+                      width: 50.0,
+                      child: Icon(
+                        Icons.flutter_dash,
+                        size: 45.0,
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ),
+                ),
+              const SizedBox(
+                height: 25.0,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  controller.isLoading = !controller.isLoading;
+                  controller.setState(() {});
+                },
+                child: controller.isLoading
+                    ? const Text("isLoading true")
+                    : const Text("isLoading false"),
+              ),
             ],
           ),
         ),

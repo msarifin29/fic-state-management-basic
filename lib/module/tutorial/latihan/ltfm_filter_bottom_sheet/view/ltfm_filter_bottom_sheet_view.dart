@@ -35,11 +35,23 @@ class LtfmFilterBottomSheetView extends StatefulWidget {
                               width: MediaQuery.of(context).size.width,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: const <Widget>[
+                                children: <Widget>[
                                   //! 1. Buat datepicker:
                                   //? datepicker: "From"
                                   //? datepicker: "To"
+                                  QDatePicker(
+                                      label: "From",
+                                      onChanged: (DateTime dateTime) {}),
+                                  QDatePicker(
+                                      label: "To",
+                                      onChanged: (DateTime dateTime) {}),
                                   //! 2. Buat tombol dengan label "FILTER"
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text("FILTER"),
+                                  ),
                                   //! 3. Ketika di klik, panggil Navigator.pop(context)
                                 ],
                               ),

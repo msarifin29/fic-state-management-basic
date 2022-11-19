@@ -27,12 +27,19 @@ class LtsmVerticalCategoryListView extends StatefulWidget {
                   itemBuilder: (context, index) {
                     //TODO: Atur selectedIndex = index did alam event onTap()
                     //! Panggil controller.setState((){}); setelah-nya
+
                     return InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        controller.selectIndex = index;
+                        controller.setState(() {});
+                      },
                       child: Card(
                         //TODO: Atur warna card, jika selectedIndex == index,
                         //! Maka warnanya orange,
                         //! Jika tidak, warnanya grey
+                        color: controller.selectIndex == index
+                            ? Colors.orange
+                            : Colors.grey,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(

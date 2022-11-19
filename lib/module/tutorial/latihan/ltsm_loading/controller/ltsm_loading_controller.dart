@@ -6,6 +6,7 @@ class LtsmLoadingController extends State<LtsmLoadingView>
     implements MvcController {
   static late LtsmLoadingController instance;
   late LtsmLoadingView view;
+  bool isLoading = false;
 
   @override
   void initState() {

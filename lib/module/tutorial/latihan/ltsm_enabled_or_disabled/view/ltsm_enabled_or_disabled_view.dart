@@ -17,7 +17,7 @@ class LtsmEnabledOrDisabledView extends StatefulWidget {
         child: Container(
           padding: const EdgeInsets.all(10.0),
           child: Column(
-            children: const [
+            children: [
               /*
               ? Buat variabel enabled di dalam State/Controller
               ! bool enabled = false;
@@ -42,6 +42,60 @@ class LtsmEnabledOrDisabledView extends StatefulWidget {
               */
                 
               */
+              TextFormField(
+                initialValue: "",
+                decoration: const InputDecoration(
+                    labelText: "Email",
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                    helperText: "Your email"),
+                maxLength: 20,
+              ),
+              TextFormField(
+                initialValue: "",
+                decoration: InputDecoration(
+                    labelText: "Password",
+                    enabledBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                    suffixIcon: Icon(controller.isEnable
+                        ? Icons.visibility_off
+                        : Icons.visibility),
+                    helperText: "Your password"),
+                obscureText: controller.isEnable,
+                maxLength: 20,
+              ),
+              const SizedBox(
+                height: 20.0,
+              ),
+              ElevatedButton.icon(
+                icon: const Icon(Icons.add),
+                label: const Text("Add"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      controller.isEnable ? Colors.orange : Colors.grey,
+                ),
+                onPressed: () {
+                  if (controller.isEnable == false) return;
+                  controller.setState(() {});
+                },
+              ),
+              const SizedBox(
+                height: 20.0,
+              ),
+              ElevatedButton.icon(
+                icon: Icon(controller.isEnable
+                    ? Icons.visibility_off
+                    : Icons.visibility),
+                label: controller.isEnable
+                    ? const Text("Password Disable")
+                    : const Text("Password Enable"),
+                onPressed: () {
+                  controller.isEnable = !controller.isEnable;
+                  controller.setState(() {});
+                },
+              ),
             ],
           ),
         ),

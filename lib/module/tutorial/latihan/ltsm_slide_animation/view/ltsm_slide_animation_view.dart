@@ -21,14 +21,14 @@ class LtsmSlideAnimationView extends StatefulWidget {
               //TODO: Buat variabel animate di dalam State/Controller
               // bool animate = false;
               AnimatedContainer(
-                duration: const Duration(milliseconds: 100),
+                duration: const Duration(milliseconds: 1000),
                 height: 100.0,
                 width: 100.0,
-                margin: const EdgeInsets.only(
+                margin: EdgeInsets.only(
                   //TODO:
                   //jika animate == true, atur left menjadi 200
                   //jika animate == false, atur left menjadi 0
-                  left: 0.0,
+                  left: controller.animate ? 200.0 : 0.0,
                 ),
                 decoration: BoxDecoration(
                   color: Colors.red[200],
@@ -52,7 +52,10 @@ class LtsmSlideAnimationView extends StatefulWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blueGrey,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  controller.animate = controller.animate ? false : true;
+                  controller.setState(() {});
+                },
               ),
             ],
           ),
